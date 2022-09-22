@@ -1,0 +1,43 @@
+.TH OCIOLUTIMAGE 1
+.SH NAME
+ociolutimage \- Convert a 3dlut to or from an image
+.SH SYNOPSIS
+.B ociolutimage
+.RI [ options ] " output-file" ...
+.SH DESCRIPTION
+This manual page documents briefly the
+.B ociolutimage
+command.
+.PP
+.SH OPTIONS
+A summary of options is included below.
+.TP
+.BI \-\-generate
+Generate a lattice image
+.TP
+.BI \-\-extract
+Extract a 3dlut from an input image
+.TP
+.BI "\-\-input " file
+Specify the input filename
+.TP
+.BI "\-\-output " file
+Specify the output filename
+.TP
+.BI "\-\-cubesize " n
+Size of the cube (default: 32)
+.TP
+.BI "\-\-maxwidth " n
+Specify maximum width of the image (default: 2048)
+.TP
+.BI "\-\-config " file
+\&.ocio configuration file (default: $OCIO)
+.TP
+.BI "\-\-colorconvert " "in out"
+Apply a color space conversion to the image.
+.SH SEE ALSO
+.BR ociobakelut (1),
+.BR ocioconvert (1),
+.BR ocioconvert (1).
+.br
+.B /usr/share/doc/opencolorio/OpenColorIO.pdf

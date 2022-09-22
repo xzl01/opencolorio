@@ -1,0 +1,178 @@
+Source: opencolorio
+Section: libs
+Priority: optional
+Maintainer: Debian PhotoTools Maintainers <pkg-phototools-devel@lists.alioth.debian.org>
+Uploaders: Matteo F. Vescovi <mfv@debian.org>
+Build-Depends:
+ cmake,
+ debhelper-compat (= 13),
+ dh-python,
+ junit4,
+ libboost-dev,
+ libglew-dev,
+ liblcms2-dev,
+ libopenexr-dev,
+# libopenimageio-dev (>= 2.0.0) <!pkg.opencolorio.noopenimageio>,
+ libqt5opengl5-dev,
+ libtinyxml-dev,
+ libyaml-cpp-dev (>= 0.6.3~),
+ pkg-config,
+ python3-dev,
+ python3-docutils,
+ python3-jinja2,
+ python3-pygments,
+ python3-setuptools,
+ python3-sphinx
+Build-Depends-Indep:
+ texlive-fonts-recommended,
+ texlive-latex-base,
+ texlive-latex-extra,
+ texlive-latex-recommended,
+ texlive-plain-generic,
+ tex-gyre
+Standards-Version: 4.5.1
+Rules-Requires-Root: no
+Homepage: http://opencolorio.org
+Vcs-Git: https://salsa.debian.org/debian-phototools-team/opencolorio.git
+Vcs-Browser: https://salsa.debian.org/debian-phototools-team/opencolorio
+
+Package: libopencolorio-dev
+Section: libdevel
+Architecture: any
+Depends: libopencolorio1v5 (= ${binary:Version}),
+         ${misc:Depends}
+Description: complete color management solution - development
+ OpenColorIO (OCIO) is a complete color management solution geared
+ towards motion picture production with an emphasis on visual effects
+ and computer animation. OCIO provides a straightforward and consistent
+ user experience across all supporting applications while allowing for
+ sophisticated back-end configuration options suitable for high-end
+ production usage. OCIO is compatible with the Academy Color Encoding
+ Specification (ACES) and is LUT-format agnostic, supporting many
+ popular formats.
+ .
+ OpenColorIO is released as version 1.0 and has been in development
+ since 2003. OCIO represents the culmination of years of production
+ experience earned on such films as SpiderMan 2 (2004), Surf's Up
+ (2007), Cloudy with a Chance of Meatballs (2009), Alice in Wonderland
+ (2010), and many more. OpenColorIO is natively supported in commercial
+ applications like Katana, Mari, Silhouette FX, and others coming soon.
+ .
+ OpenColorIO is free and is one of several open source projects
+ actively sponsored by Sony Imageworks.
+ .
+ This package provides the development files used to build applications
+ using libopencolorio.
+
+Package: libopencolorio1v5
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Conflicts: libopencolorio1
+Replaces: libopencolorio1
+Description: complete color management solution - runtime
+ OpenColorIO (OCIO) is a complete color management solution geared
+ towards motion picture production with an emphasis on visual effects
+ and computer animation. OCIO provides a straightforward and consistent
+ user experience across all supporting applications while allowing for
+ sophisticated back-end configuration options suitable for high-end
+ production usage. OCIO is compatible with the Academy Color Encoding
+ Specification (ACES) and is LUT-format agnostic, supporting many
+ popular formats.
+ .
+ OpenColorIO is released as version 1.0 and has been in development
+ since 2003. OCIO represents the culmination of years of production
+ experience earned on such films as SpiderMan 2 (2004), Surf's Up
+ (2007), Cloudy with a Chance of Meatballs (2009), Alice in Wonderland
+ (2010), and many more. OpenColorIO is natively supported in commercial
+ applications like Katana, Mari, Silhouette FX, and others coming soon.
+ .
+ OpenColorIO is free and is one of several open source projects
+ actively sponsored by Sony Imageworks.
+ .
+ This package provides the runtime files used to run applications
+ built against libopencolorio.
+
+Package: opencolorio-tools
+Section: utils
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Description: complete color management solution - utilities
+ OpenColorIO (OCIO) is a complete color management solution geared
+ towards motion picture production with an emphasis on visual effects
+ and computer animation. OCIO provides a straightforward and consistent
+ user experience across all supporting applications while allowing for
+ sophisticated back-end configuration options suitable for high-end
+ production usage. OCIO is compatible with the Academy Color Encoding
+ Specification (ACES) and is LUT-format agnostic, supporting many
+ popular formats.
+ .
+ OpenColorIO is released as version 1.0 and has been in development
+ since 2003. OCIO represents the culmination of years of production
+ experience earned on such films as SpiderMan 2 (2004), Surf's Up
+ (2007), Cloudy with a Chance of Meatballs (2009), Alice in Wonderland
+ (2010), and many more. OpenColorIO is natively supported in commercial
+ applications like Katana, Mari, Silhouette FX, and others coming soon.
+ .
+ OpenColorIO is free and is one of several open source projects
+ actively sponsored by Sony Imageworks.
+ .
+ This package provides some utilities.
+
+Package: opencolorio-doc
+Section: doc
+Architecture: all
+Depends: libjs-jquery,
+         libjs-underscore,
+         ${misc:Depends}
+Description: complete color management solution - documentation
+ OpenColorIO (OCIO) is a complete color management solution geared
+ towards motion picture production with an emphasis on visual effects
+ and computer animation. OCIO provides a straightforward and consistent
+ user experience across all supporting applications while allowing for
+ sophisticated back-end configuration options suitable for high-end
+ production usage. OCIO is compatible with the Academy Color Encoding
+ Specification (ACES) and is LUT-format agnostic, supporting many
+ popular formats.
+ .
+ OpenColorIO is released as version 1.0 and has been in development
+ since 2003. OCIO represents the culmination of years of production
+ experience earned on such films as SpiderMan 2 (2004), Surf's Up
+ (2007), Cloudy with a Chance of Meatballs (2009), Alice in Wonderland
+ (2010), and many more. OpenColorIO is natively supported in commercial
+ applications like Katana, Mari, Silhouette FX, and others coming soon.
+ .
+ OpenColorIO is free and is one of several open source projects
+ actively sponsored by Sony Imageworks.
+ .
+ This package provides the documentation.
+
+Package: python3-pyopencolorio
+Section: python
+Architecture: any
+Depends: libopencolorio1v5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: complete color management solution - Python bindings
+ OpenColorIO (OCIO) is a complete color management solution geared
+ towards motion picture production with an emphasis on visual effects
+ and computer animation. OCIO provides a straightforward and consistent
+ user experience across all supporting applications while allowing for
+ sophisticated back-end configuration options suitable for high-end
+ production usage. OCIO is compatible with the Academy Color Encoding
+ Specification (ACES) and is LUT-format agnostic, supporting many
+ popular formats.
+ .
+ OpenColorIO is released as version 1.0 and has been in development
+ since 2003. OCIO represents the culmination of years of production
+ experience earned on such films as SpiderMan 2 (2004), Surf's Up
+ (2007), Cloudy with a Chance of Meatballs (2009), Alice in Wonderland
+ (2010), and many more. OpenColorIO is natively supported in commercial
+ applications like Katana, Mari, Silhouette FX, and others coming soon.
+ .
+ OpenColorIO is free and is one of several open source projects
+ actively sponsored by Sony Imageworks.
+ .
+ This package provides Python bindings to the OpenColorIO library.

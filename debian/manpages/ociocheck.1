@@ -1,0 +1,35 @@
+.TH OCIOCHECK 1
+.SH NAME
+ociocheck \- validate an OpenColorIO configuration
+.SH SYNOPSIS
+.B ociocheck
+.RI [ options ] " output-file" ...
+.SH DESCRIPTION
+This manual page documents briefly the
+.B ociocheck
+command.
+.PP
+\fBociocheck\fP validates the specified .ocio configuration,
+and checks that all the color transforms are defined.
+For example, it is possible that the configuration may reference
+lookup tables that do not exist. ociocheck will find these cases.
+
+ociocheck can also be used to clean up formatting on an existing profile
+that has been manually edited, using the '\-o' option.
+.SH OPTIONS
+A summary of options is included below.
+.TP
+.BI "\-\-help " space
+print help message
+.TP
+.BI "\-\-iconfig " configfile
+Input .ocio configuration file (default: $OCIO)
+.TP
+.BI "\-\-oconfig " configfile
+Output .ocio file
+.SH SEE ALSO
+.BR ociobakelut (1),
+.BR ocioconvert (1),
+.BR ociolutimage (1).
+.br
+.B /usr/share/doc/opencolorio/OpenColorIO.pdf

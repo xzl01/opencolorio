@@ -1,0 +1,42 @@
+#!/usr/bin/make -f
+
+CXXFLAGS = $(shell dpkg-buildflags --get CXXFLAGS)
+CPPFLAGS = $(shell dpkg-buildflags --get CPPFLAGS)
+export LDFLAGS = $(shell dpkg-buildflags --get LDFLAGS)
+export REPACK_SH=$(CURDIR)/debian/repack.sh
+BLDDIR = debian/cmake
+INSTDIR = debian/tmp
+PY3VERS = $(shell py3versions -dv)
+
+%:
+	dh $@ -Scmake -B$(BLDDIR) --with python3
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_CXX_FLAGS="$(CXXFLAGS) $(CPPFLAGS)" \
+		-DOCIO_BUILD_DOCS=ON \
+		-DOCIO_BUILD_NUKE=OFF \
+		-DOCIO_BUILD_STATIC=OFF \
+		-DOCIO_BUILD_TESTS=OFF \
+		-DOCIO_BUILD_TRUELIGHT=OFF \
+		-DOCIO_USE_SSE=OFF \
+		-DPYTHON=python$(PY3VERS) \
+		-DUSE_EXTERNAL_TINYXML=ON \
+		-DUSE_EXTERNAL_YAML=ON
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -f $(INSTDIR)/usr/share/doc/OpenColorIO/html/_sources/License.txt
+	rm -f $(INSTDIR)/usr/share/doc/OpenColorIO/html/_static/jquery.js
+	rm -f $(INSTDIR)/usr/share/doc/OpenColorIO/html/_static/underscore.js
+	rm -f $(INSTDIR)/usr/share/ocio/setup_ocio.sh
+
+override_dh_install:
+	mv $(INSTDIR)/usr/share/doc/OpenColorIO $(INSTDIR)/usr/share/doc/opencolorio
+	dh_install
+
+override_dh_auto_clean:
+	py3clean .
+	dh_auto_clean
+
+override_dh_auto_test:

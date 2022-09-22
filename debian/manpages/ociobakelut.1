@@ -1,0 +1,99 @@
+.TH OCIOBAKELUT 1
+.SH NAME
+ociobakelut \- create a new LUT or icc profile from an OCIO config or lut file(s)
+.SH SYNOPSIS
+.B ociobakelut
+.RI [ options ] " output-file" ...
+.SH DESCRIPTION
+This manual page documents briefly the
+.B ociobakelut
+command.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
+.\" respectively.
+\fBociobakelut\fP is a program which bakes a color transform into various color
+lookup file formats ("a LUT")
+.PP
+This is intended for applications that have not directly integrated
+OCIO, but can load LUT files
+.PP
+.SH OPTIONS
+A summary of options is included below.
+.TP
+.BI "\-\-inputspace " space
+Input OCIO ColorSpace (or Role)
+.TP
+.BI "\-\-outputspace " space
+Output OCIO ColorSpace (or Role)
+.TP
+.BI "\-\-shaperspace " space
+the OCIO ColorSpace or Role, for the shaper
+.TP
+.BI "\-\-looks " looks
+the OCIO looks to apply
+.TP
+.BI "\-\-iconfig " configfile
+.PP
+Input .ocio configuration file (default: $OCIO)
+Config-Free LUT Baking
+.TP
+.BI "\-\-lut " lut
+Specify a LUT (forward direction)
+.TP
+.BI "\-\-invlut " lut
+Specify a LUT (inverse direction)
+.TP
+.BI "\-\-slope " "x y z"
+slope
+.TP
+.BI "\-\-offset " "x y z"
+offset (float)
+.TP
+.BI "\-\-offset10 " "x y z"
+offset (10-bit)
+.TP
+.BI "\-\-power " "x y z"
+power
+.TP
+.BI "\-\-sat " x
+saturation (ASC-CDL luma coefficients)
+.PP
+Baking options
+.TP
+.BI "\-\-format " format
+.TP
+.BI "\-\-shapersize ' n
+size of the shaper (default: format specific)
+.TP
+.BI "\-\-cubesize " n
+size of the cube (default: format specific)
+.TP
+.B "\-\-stdout"
+Write to stdout (rather than file)
+.PP
+ICC Options
+.TP
+.BI "\-\-whitepoint " n
+whitepoint for the profile (default: 6505)
+.BI "\-\-displayicc " s
+an icc profile which matches the OCIO profiles target display
+.BI "\-\-description " s
+a meaningful description, this will show up in UI like photoshop
+.BI "\-\-copyright " s
+a copyright field
+.PP
+other options
+.TP
+.B "\-\-v"
+Verbose
+.TP
+.B \-\-help
+Show summary of options.
+.TP
+.SH SEE ALSO
+.BR ociocheck (1),
+.BR ocioconvert (1),
+.BR ociolutimage (1).
+.br
+.B /usr/share/doc/opencolorio/OpenColorIO.pdf

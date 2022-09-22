@@ -1,0 +1,11 @@
+Document: opencolorio
+Title: Debian OpenColorIO Manual
+Section: Programming/C++
+
+Format: HTML
+Index: /usr/share/doc/opencolorio/html/index.html
+Files: /usr/share/doc/opencolorio/html/*.html
+
+Format: Text
+Index: /usr/share/doc/opencolorio/html/_sources/index.rst.txt
+Files: /usr/share/doc/opencolorio/html/_sources/*.rst.txt
