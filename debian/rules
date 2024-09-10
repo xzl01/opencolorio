@@ -1,42 +1,45 @@
 #!/usr/bin/make -f
 
+export DH_OPTIONS
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export LDFLAGS = $(shell dpkg-buildflags --get LDFLAGS)
 CXXFLAGS = $(shell dpkg-buildflags --get CXXFLAGS)
 CPPFLAGS = $(shell dpkg-buildflags --get CPPFLAGS)
-export LDFLAGS = $(shell dpkg-buildflags --get LDFLAGS)
-export REPACK_SH=$(CURDIR)/debian/repack.sh
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 BLDDIR = debian/cmake
 INSTDIR = debian/tmp
-PY3VERS = $(shell py3versions -dv)
 
 %:
 	dh $@ -Scmake -B$(BLDDIR) --with python3
 
+override_dh_auto_clean:
+	dh_auto_clean
+	# temporary hack until the Findyaml-cpp.cmake is patched by upstream to work with newer yaml-cpp.
+	# in any case, the one provided by libyaml-cpp-dev works correctly
+	rm -f share/cmake/modules/Findyaml-cpp.cmake
+
 override_dh_auto_configure:
 	dh_auto_configure -- \
+		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_CXX_FLAGS="$(CXXFLAGS) $(CPPFLAGS)" \
-		-DOCIO_BUILD_DOCS=ON \
+		-DCMAKE_CXX_STANDARD=17 \
+		-DCMAKE_INSTALL_MESSAGE="ALWAYS" \
+		-DCMAKE_SKIP_RPATH=ON \
 		-DOCIO_BUILD_NUKE=OFF \
 		-DOCIO_BUILD_STATIC=OFF \
 		-DOCIO_BUILD_TESTS=OFF \
-		-DOCIO_BUILD_TRUELIGHT=OFF \
+		-DOCIO_INSTALL_EXT_PACKAGES=NONE \
 		-DOCIO_USE_SSE=OFF \
-		-DPYTHON=python$(PY3VERS) \
-		-DUSE_EXTERNAL_TINYXML=ON \
-		-DUSE_EXTERNAL_YAML=ON
+		-Dpystring_INCLUDE_DIR:PATH="/usr/include"
 
 override_dh_auto_install:
 	dh_auto_install
-	rm -f $(INSTDIR)/usr/share/doc/OpenColorIO/html/_sources/License.txt
-	rm -f $(INSTDIR)/usr/share/doc/OpenColorIO/html/_static/jquery.js
-	rm -f $(INSTDIR)/usr/share/doc/OpenColorIO/html/_static/underscore.js
 	rm -f $(INSTDIR)/usr/share/ocio/setup_ocio.sh
+	rm -f $(INSTDIR)/usr/lib/$(DEB_HOST_MULTIARCH)/lib*.a
 
 override_dh_install:
-	mv $(INSTDIR)/usr/share/doc/OpenColorIO $(INSTDIR)/usr/share/doc/opencolorio
+	mkdir -p debian/tmp/usr/include/PyOpenColorIO
+	cp src/bindings/python/PyOpenColorIO.h debian/tmp/usr/include/PyOpenColorIO/
 	dh_install
-
-override_dh_auto_clean:
-	py3clean .
-	dh_auto_clean
 
 override_dh_auto_test:

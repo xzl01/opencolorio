@@ -1,0 +1,32 @@
+.TH OCIOMAKECLF "1" "August 2023" "ociomakeclf -- Convert a LUT into CLF format and optionally add conversions from/to ACES2065-1 to make it an LMT." "User Commands"
+.SH NAME
+ociomakeclf \- convert a LUT into CLF format and optionally add conversions from/to ACES2065-1 to make it an LMT.
+.SH DESCRIPTION
+ociomakeclf \fB\-\-\fR Convert a LUT into CLF format and optionally add conversions from/to ACES2065\-1 to make it an LMT.
+.IP
+If the csc argument is used, the CLF will contain the transforms:
+[ACES2065\-1 to CSC space] [the LUT] [CSC space to ACES2065\-1].
+.PP
+usage: ociomakeclf inLutFilepath outLutFilepath \fB\-\-csc\fR cscColorSpace
+.TP
+or
+ociomakeclf inLutFilepath outLutFilepath
+.TP
+or
+ociomakeclf \fB\-\-list\fR
+.SH OPTIONS
+.TP
+\fB\-\-help\fR
+Print help message
+.TP
+\fB\-\-verbose\fR
+Display general information
+.TP
+\fB\-\-measure\fR
+Measure (in ms) the CLF write
+.TP
+\fB\-\-list\fR
+List of the supported CSC color spaces
+.TP
+\fB\-\-csc\fR %s
+The color space that the input LUT expects and produces

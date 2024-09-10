@@ -1,28 +1,48 @@
-.TH OCIOCONVERT 1
+.TH OCIOCONVERT "1" "August 2023" "ocioconvert -- apply colorspace transform to an image" "User Commands"
 .SH NAME
 ocioconvert \- apply colorspace transform to an image
-.SH SYNOPSIS
-.B ocioconvert
-.RI [ options ] " output-file" ...
 .SH DESCRIPTION
-This manual page documents briefly the
-.B ocioconvert
-command.
+ocioconvert \fB\-\-\fR apply colorspace transform to an image
+.PP
+usage: ocioconvert [options]  inputimage inputcolorspace outputimage outputcolorspace
+.IP
+or: ocioconvert [options] \fB\-\-lut\fR lutfile inputimage outputimage
+or: ocioconvert [options] \fB\-\-view\fR inputimage inputcolorspace outputimage displayname viewname
 .SH OPTIONS
-A summary of options is included below.
 .TP
+\fB\-\-lut\fR
+Convert using a LUT rather than a config file
 .TP
-.BI "\-\-float\-attribute " N=F
-name=float pair defining OCIO float atribute
+\fB\-\-view\fR
+Convert to a (display,view) pair rather than to an output color space
 .TP
-.BI "\-\-int\-attribute " N=I
-name=int pair defining OCIO int atribute
+\fB\-\-gpu\fR
+Use GPU color processing instead of CPU (CPU is the default)
 .TP
-.BI "\-\-string\-attribute " N=S
-name=string pair defining OCIO string atribute
-.SH SEE ALSO
-.BR ociobakelut (1),
-.BR ociocheck (1),
-.BR ociolutimage (1).
-.br
-.B /usr/share/doc/opencolorio/OpenColorIO.pdf
+\fB\-\-gpulegacy\fR
+Use the legacy (i.e. baked) GPU color processing instead of the CPU one (\fB\-\-gpu\fR is ignored)
+.TP
+\fB\-\-gpuinfo\fR
+Output the OCIO shader program
+.TP
+\fB\-\-help\fR
+Print help message
+.TP
+\fB\-v\fR
+Display general information
+.SS "OpenImageIO options:"
+.TP
+\fB\-\-float\-attribute\fR %L
+"name=float" pair defining OIIO float attribute for outputimage
+.TP
+\fB\-\-int\-attribute\fR %L
+"name=int" pair defining OIIO int attribute for outputimage
+.TP
+\fB\-\-string\-attribute\fR %L
+"name=string" pair defining OIIO string attribute for outputimage
+.TP
+\fB\-\-croptofull\fR
+Crop or pad to make pixel data region match the "full" region
+.TP
+\fB\-\-ch\fR %s
+Select channels (e.g., "2,3,4")

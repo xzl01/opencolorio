@@ -1,0 +1,37 @@
+.TH OCIOPERF "1" "August 2023" "ocioperf -- apply and measure a color transformation processing" "User Commands"
+.SH NAME
+ocioperf \- apply and measure a color transformation processing
+.SH DESCRIPTION
+ocioperf \fB\-\-\fR apply and measure a color transformation processing
+.PP
+usage: ocioperf [options] \fB\-\-image\fR inputimage
+.TP
+\fB\-\-help\fR
+Display the help and exit
+.TP
+\fB\-\-verbose\fR
+Display some general information
+.TP
+\fB\-\-test\fR %d
+Define the type of processing to measure: 0 means on the complete image (the default), 1 is line\-by\-line, 2 is pixel\-per\-pixel and \fB\-1\fR performs all the test types
+.TP
+\fB\-\-transform\fR %s
+Provide the transform file to apply on the image
+.TP
+\fB\-\-colorspaces\fR %s %s
+Provide the input and output color spaces to apply on the image
+.TP
+\fB\-\-displayview\fR %s %s %s
+Provide the input and (display, view) pair to apply on the image
+.TP
+\fB\-\-image\fR %s
+Provide the filepath of the image to process
+.TP
+\fB\-\-iter\fR %d
+Provide the number of iterations on the processing. Default is 10
+.TP
+\fB\-\-out\fR %s
+Provide an output bit\-depth (auto, ui16, f32) where auto preserves the input bit\-depth
+.TP
+\fB\-\-nocache\fR
+Bypass all caches

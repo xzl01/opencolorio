@@ -1,24 +1,95 @@
-opencolorio (1.1.1~dfsg0-7.1) UNRELEASED; urgency=medium
-
-  * update
-
- -- Debian PhotoTools Maintainers <pkg-phototools-devel@lists.alioth.debian.org>  Thu, 26 May 2022 11:02:38 +0800
-
-opencolorio (1.1.1~dfsg0-7.1) unstable; urgency=medium
+opencolorio (2.1.3+dfsg-1.1) unstable; urgency=medium
 
   * Non-maintainer upload.
-  * Backport parts of upstream commit 2f87cca2e129471f57df0c3a8a3adc0c73a4811c
-    to use the proper variables in a debug function (fixing the build with
-    GCC 11); patch 0001-Adsk-Contrib-Fix-macos-issues-973.patch.
-    (Closes: #984276)
-  * Backport parts of upstream commit 7575d9cb0f514a43a4a8b107793914589ae5ac9a
-    to support yaml-cpp >= 0.7.0; patch
-    0001-Adsk-Contrib-Fix-the-display-order-issue-883.patch
-    - bump the libyaml-cpp-dev build dependency to >= 0.6.3 accordingly
-  * Add the tex-gyre indep build dependency, as it provides tgtermes.sty
-    (needed to build the documentation).
+  * Rename libraries for 64-bit time_t transition.  Closes: #1062836
 
- -- Pino Toscano <pino@debian.org>  Fri, 24 Dec 2021 11:33:28 +0100
+ -- Benjamin Drung <bdrung@debian.org>  Thu, 29 Feb 2024 03:03:29 +0000
+
+opencolorio (2.1.3+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Wed, 06 Sep 2023 20:33:23 +0200
+
+opencolorio (2.1.2+dfsg1-4.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fixup manpage failure (Closes: #1017111)
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Sat, 26 Aug 2023 16:47:44 +0200
+
+opencolorio (2.1.2+dfsg1-4.1) unstable; urgency=medium
+
+  [ Gianfranco Costamagna ]
+  * Non-maintainer upload.
+  * Fix FTBFS with newer yaml-cpp (Closes: #1050366)
+  * Update manpages (Closes: #1017111)
+
+  [ Olivier Gayot ]
+  * Include header file in binary package (change in d/rules and
+    d/python3-pyopencolorio.install) (Closes: #1050570)
+  * d/patches/0002-fix-documentation-cmake-syntax.patch Fix generation of
+    documentation.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Sat, 26 Aug 2023 13:55:36 +0200
+
+opencolorio (2.1.2+dfsg1-4) unstable; urgency=medium
+
+  [ Pino Toscano ]
+  * debian/control: update build-dependencies
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Sat, 20 Aug 2022 23:39:40 +0200
+
+opencolorio (2.1.2+dfsg1-3) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Thu, 18 Aug 2022 19:59:49 +0200
+
+opencolorio (2.1.2+dfsg1-2) experimental; urgency=medium
+
+  * debian/: switch to Imath/OpenEXR 3.x
+  * debian/control: python3-imath b-dep added
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Wed, 17 Aug 2022 23:47:34 +0200
+
+opencolorio (2.1.2+dfsg1-1) experimental; urgency=medium
+
+  * New upstream release (Closes: #995905, #984276)
+    - debian/: SONAME bump 1 -> 2
+    - debian/patches/: obsolete patchset dropped
+  * debian/:
+    - drop documentation binary package
+    - M-A support added
+  * debian/patches/: patchset updated
+    - 0001-Fix_cstring_issue.patch added
+  * debian/NEWS: file added
+  * debian/watch: path and repacking updated
+  * debian/manpages/: manual pages added and updated
+  * debian/copyright: paths fixed
+  * debian/control:
+    - freeglut3-dev b-dep added
+    - more missing b-deps added
+    - S-V bump 4.5.1 -> 4.6.1 (no changes needed)
+    - python3-dev -> python3-dev:any
+    - fix upstream URL
+    - demote to use IlmBase/OpenEXR 2.x
+    - add pybuild-plugin-pyproject b-dep
+  * debian/rules:
+    - CMAKE_BUILD_TYPE parameter added
+    - drop useless repack variable
+    - avoid building external packages
+    - hard set for pystring headers directory
+    - drop obsolete settings on Python
+    - bump CMAKE_CXX_STANDARD to 17
+    - add and re-arrange exports and variables
+    - explicitly define OpenEXR Half usage
+    - drop documentation moving
+    - drop auto clean overriding
+    - static libraries dropped
+    - documentation files removal dropped
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Thu, 11 Aug 2022 23:46:16 +0200
 
 opencolorio (1.1.1~dfsg0-7) unstable; urgency=medium
 

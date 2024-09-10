@@ -1,21 +1,30 @@
-if (OIIO_FOUND)
-    include_directories(
-        ${CMAKE_SOURCE_DIR}/export/
-        ${CMAKE_BINARY_DIR}/export/
-        ${CMAKE_SOURCE_DIR}/src/apps/share/
-        ${OIIO_INCLUDES}
-        ${ILMBASE_INCLUDES}
-    )
-    
-    file(GLOB_RECURSE share_src_files "${CMAKE_SOURCE_DIR}/src/apps/share/*.cpp")
-    
-    add_executable(ociolutimage ${share_src_files} main.cpp)
-    
-    set_target_properties(ociolutimage PROPERTIES COMPILE_FLAGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
+# SPDX-License-Identifier: BSD-3-Clause
+# Copyright Contributors to the OpenColorIO Project.
 
-    target_link_libraries(ociolutimage ${OIIO_LIBRARIES} ${CMAKE_DL_LIBS})
-    
-    target_link_OCIO(ociolutimage)
-    
-    install(TARGETS ociolutimage EXPORT OpenColorIO DESTINATION ${CMAKE_INSTALL_EXEC_PREFIX}/bin)
+set(SOURCES
+	main.cpp
+)
+
+add_executable(ociolutimage ${SOURCES})
+
+if(NOT BUILD_SHARED_LIBS)
+	target_compile_definitions(ociolutimage
+		PRIVATE
+			OpenColorIO_SKIP_IMPORTS
+	)
 endif()
+
+set_target_properties(ociolutimage PROPERTIES
+	COMPILE_FLAGS "${PLATFORM_COMPILE_FLAGS}")
+
+target_link_libraries(ociolutimage
+	PRIVATE
+		apputils
+		OpenColorIO
+		OpenImageIO::OpenImageIO
+		utils::strings
+)
+
+install(TARGETS ociolutimage
+	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)

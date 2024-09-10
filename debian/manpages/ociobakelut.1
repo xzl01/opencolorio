@@ -1,99 +1,75 @@
-.TH OCIOBAKELUT 1
+.TH OCIOBAKELUT "1" "August 2023" "create a new LUT or ICC profile from an OCIO config or LUT file(s)" "User Commands"
 .SH NAME
-ociobakelut \- create a new LUT or icc profile from an OCIO config or lut file(s)
-.SH SYNOPSIS
-.B ociobakelut
-.RI [ options ] " output-file" ...
-.SH DESCRIPTION
-This manual page documents briefly the
-.B ociobakelut
-command.
+ociobakelut \- create a new LUT or ICC profile from an OCIO config or LUT file(s)
 .PP
-.\" TeX users may be more comfortable with the \fB<whatever>\fP and
-.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
-.\" respectively.
-\fBociobakelut\fP is a program which bakes a color transform into various color
-lookup file formats ("a LUT")
+usage:  ociobakelut [options] <OUTPUTFILE.LUT>
 .PP
-This is intended for applications that have not directly integrated
-OCIO, but can load LUT files
+example:  ociobakelut \fB\-\-inputspace\fR lg10 \fB\-\-outputspace\fR srgb8 \fB\-\-format\fR flame lg_to_srgb.3dl
+example:  ociobakelut \fB\-\-lut\fR filmlut.3dl \fB\-\-lut\fR calibration.3dl \fB\-\-format\fR flame display.3dl
+example:  ociobakelut \fB\-\-cccid\fR 0 \fB\-\-lut\fR cdlgrade.ccc \fB\-\-lut\fR calibration.3dl \fB\-\-format\fR flame graded_display.3dl
+example:  ociobakelut \fB\-\-lut\fR look.3dl \fB\-\-offset\fR 0.01 \fB\-0\fR.02 0.03 \fB\-\-lut\fR display.3dl \fB\-\-format\fR flame display_with_look.3dl
+example:  ociobakelut \fB\-\-inputspace\fR lg10 \fB\-\-outputspace\fR srgb8 \fB\-\-format\fR icc \fI\,~/Library/ColorSync/Profiles/test.icc\/\fP
+example:  ociobakelut \fB\-\-lut\fR filmlut.3dl \fB\-\-lut\fR calibration.3dl \fB\-\-format\fR icc \fI\,~/Library/ColorSync/Profiles/test.icc\/\fP
 .PP
-.SH OPTIONS
-A summary of options is included below.
+Using Existing OCIO Configurations
 .TP
-.BI "\-\-inputspace " space
+\fB\-\-inputspace\fR %s
 Input OCIO ColorSpace (or Role)
 .TP
-.BI "\-\-outputspace " space
+\fB\-\-outputspace\fR %s
 Output OCIO ColorSpace (or Role)
 .TP
-.BI "\-\-shaperspace " space
+\fB\-\-shaperspace\fR %s
 the OCIO ColorSpace or Role, for the shaper
 .TP
-.BI "\-\-looks " looks
+\fB\-\-looks\fR %s
 the OCIO looks to apply
 .TP
-.BI "\-\-iconfig " configfile
-.PP
+\fB\-\-iconfig\fR %s
 Input .ocio configuration file (default: $OCIO)
-Config-Free LUT Baking
-.TP
-.BI "\-\-lut " lut
-Specify a LUT (forward direction)
-.TP
-.BI "\-\-invlut " lut
-Specify a LUT (inverse direction)
-.TP
-.BI "\-\-slope " "x y z"
-slope
-.TP
-.BI "\-\-offset " "x y z"
-offset (float)
-.TP
-.BI "\-\-offset10 " "x y z"
-offset (10-bit)
-.TP
-.BI "\-\-power " "x y z"
-power
-.TP
-.BI "\-\-sat " x
-saturation (ASC-CDL luma coefficients)
 .PP
-Baking options
+Config\-Free LUT Baking
+.IP
+(all options can be specified multiple times, each is applied in order)
+\fB\-\-cccid\fR %s           Specify a CCCId for any following LUTs
+\fB\-\-lut\fR %s             Specify a LUT (forward direction)
+\fB\-\-invlut\fR %s          Specify a LUT (inverse direction)
+\fB\-\-slope\fR %f %f %f     slope
+\fB\-\-offset\fR %f %f %f    offset (float)
+\fB\-\-offset10\fR %f %f %f  offset (10\-bit)
+\fB\-\-power\fR %f %f %f     power
+\fB\-\-sat\fR %f             saturation (ASC\-CDL luma coefficients)
+.PP
+Baking Options
 .TP
-.BI "\-\-format " format
+\fB\-\-format\fR %s
+the LUT format to bake: flame (.3dl), lustre (.3dl), Academy/ASC Common LUT Format (.clf), Color Transform Format (.ctf), cinespace (.csp), houdini (.lut), iridas_cube (.cube), iridas_itx (.itx), resolve_cube (.cube), truelight (.cub), icc (.icc)
 .TP
-.BI "\-\-shapersize ' n
+\fB\-\-shapersize\fR %d
 size of the shaper (default: format specific)
 .TP
-.BI "\-\-cubesize " n
+\fB\-\-cubesize\fR %d
 size of the cube (default: format specific)
 .TP
-.B "\-\-stdout"
+\fB\-\-stdout\fR
 Write to stdout (rather than file)
+.TP
+\fB\-\-v\fR
+Verbose
+.TP
+\fB\-\-help\fR
+Print help message
 .PP
 ICC Options
 .TP
-.BI "\-\-whitepoint " n
+\fB\-\-whitepoint\fR %d
 whitepoint for the profile (default: 6505)
-.BI "\-\-displayicc " s
-an icc profile which matches the OCIO profiles target display
-.BI "\-\-description " s
-a meaningful description, this will show up in UI like photoshop
-.BI "\-\-copyright " s
-a copyright field
-.PP
-other options
 .TP
-.B "\-\-v"
-Verbose
+\fB\-\-displayicc\fR %s
+an ICC profile which matches the OCIO profiles target display
 .TP
-.B \-\-help
-Show summary of options.
+\fB\-\-description\fR %s
+a meaningful description, this will show up in UI like photoshop (defaults to "filename.icc")
 .TP
-.SH SEE ALSO
-.BR ociocheck (1),
-.BR ocioconvert (1),
-.BR ociolutimage (1).
-.br
-.B /usr/share/doc/opencolorio/OpenColorIO.pdf
+\fB\-\-copyright\fR %s
+a copyright field added in the file (default: "No copyright. Use freely.")

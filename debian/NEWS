@@ -1,0 +1,8 @@
+opencolorio (2.1.2+dfsg1-1) experimental; urgency=medium
+
+  This release removes the documentation binary package
+  since its generation from source is causing troubles.
+  Once the process will be better defined, the doc package
+  will be added back again. Sorry for the inconvenience.
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Thu, 11 Aug 2022 23:15:20 +0200

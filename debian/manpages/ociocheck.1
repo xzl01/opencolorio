@@ -1,35 +1,22 @@
-.TH OCIOCHECK 1
+.TH OCIOCHECK "1" "August 2023" "ociocheck -- validate an OpenColorIO configuration" "User Commands"
 .SH NAME
 ociocheck \- validate an OpenColorIO configuration
-.SH SYNOPSIS
-.B ociocheck
-.RI [ options ] " output-file" ...
-.SH DESCRIPTION
-This manual page documents briefly the
-.B ociocheck
-command.
 .PP
-\fBociocheck\fP validates the specified .ocio configuration,
-and checks that all the color transforms are defined.
-For example, it is possible that the configuration may reference
-lookup tables that do not exist. ociocheck will find these cases.
-
-ociocheck can also be used to clean up formatting on an existing profile
-that has been manually edited, using the '\-o' option.
-.SH OPTIONS
-A summary of options is included below.
+usage:  ociocheck [options]
 .TP
-.BI "\-\-help " space
-print help message
+\fB\-\-help\fR
+Print help message
 .TP
-.BI "\-\-iconfig " configfile
+\fB\-\-iconfig\fR %s
 Input .ocio configuration file (default: $OCIO)
 .TP
-.BI "\-\-oconfig " configfile
+\fB\-\-oconfig\fR %s
 Output .ocio file
-.SH SEE ALSO
-.BR ociobakelut (1),
-.BR ocioconvert (1),
-.BR ociolutimage (1).
-.br
-.B /usr/share/doc/opencolorio/OpenColorIO.pdf
+.PP
+ociocheck is useful to validate that the specified OCIO configuration
+is valid, and that all the color transforms are defined.
+For example, it is possible that the configuration may reference
+lookup tables that do not exist. ociocheck will find these cases.
+.PP
+ociocheck can also be used to clean up formatting on an existing profile
+that has been manually edited, using the '\-o' option.

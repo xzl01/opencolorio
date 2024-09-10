@@ -1,5 +1,4 @@
 usr/include/OpenColorIO
-usr/lib/lib*.so
-usr/lib/pkgconfig
-usr/*.cmake usr/share/cmake
-usr/cmake/*.cmake usr/share/cmake
+usr/lib/*/lib*.so
+usr/lib/*/pkgconfig
+usr/lib/*/cmake/OpenColorIO/*.cmake usr/share/cmake

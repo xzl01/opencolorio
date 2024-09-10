@@ -1,43 +1,34 @@
-.TH OCIOLUTIMAGE 1
+.TH OCIOLUTIMAGE "1" "August 2023" "ociolutimage -- Convert a 3D LUT to or from an image" "User Commands"
 .SH NAME
-ociolutimage \- Convert a 3dlut to or from an image
-.SH SYNOPSIS
-.B ociolutimage
-.RI [ options ] " output-file" ...
+ociolutimage \- convert a 3D LUT to or from an image
 .SH DESCRIPTION
-This manual page documents briefly the
-.B ociolutimage
-command.
+ociolutimage \fB\-\-\fR Convert a 3D LUT to or from an image
 .PP
-.SH OPTIONS
-A summary of options is included below.
+usage:  ociolutimage [options] <OUTPUTFILE.LUT>
+.PP
+example:  ociolutimage \fB\-\-generate\fR \fB\-\-output\fR lut.exr
+example:  ociolutimage \fB\-\-extract\fR \fB\-\-input\fR lut.exr \fB\-\-output\fR output.spi3d
 .TP
-.BI \-\-generate
+\fB\-\-generate\fR
 Generate a lattice image
 .TP
-.BI \-\-extract
-Extract a 3dlut from an input image
+\fB\-\-extract\fR
+Extract a 3D LUT from an input image
 .TP
-.BI "\-\-input " file
-Specify the input filename
-.TP
-.BI "\-\-output " file
-Specify the output filename
-.TP
-.BI "\-\-cubesize " n
+\fB\-\-cubesize\fR %d
 Size of the cube (default: 32)
 .TP
-.BI "\-\-maxwidth " n
+\fB\-\-maxwidth\fR %d
 Specify maximum width of the image (default: 2048)
 .TP
-.BI "\-\-config " file
+\fB\-\-input\fR %s
+Specify the input filename
+.TP
+\fB\-\-output\fR %s
+Specify the output filename
+.TP
+\fB\-\-config\fR %s
 \&.ocio configuration file (default: $OCIO)
 .TP
-.BI "\-\-colorconvert " "in out"
+\fB\-\-colorconvert\fR %s %s
 Apply a color space conversion to the image.
-.SH SEE ALSO
-.BR ociobakelut (1),
-.BR ocioconvert (1),
-.BR ocioconvert (1).
-.br
-.B /usr/share/doc/opencolorio/OpenColorIO.pdf

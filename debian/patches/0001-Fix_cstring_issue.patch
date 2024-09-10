@@ -1,0 +1,22 @@
+From: "Matteo F. Vescovi" <mfv@debian.org>
+Date: Sun, 24 Jul 2022 13:48:24 +0200
+Subject: Fix_cstring_issue
+
+Bug: https://github.com/AcademySoftwareFoundation/OpenColorIO/issues/1665
+Forwarded: not-needed
+---
+ src/OpenColorIO/FileRules.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/OpenColorIO/FileRules.cpp b/src/OpenColorIO/FileRules.cpp
+index 794dfdb..61a5e0f 100644
+--- a/src/OpenColorIO/FileRules.cpp
++++ b/src/OpenColorIO/FileRules.cpp
+@@ -3,6 +3,7 @@
+ 
+ #include <algorithm>
+ #include <cctype>
++#include <cstring>
+ #include <map>
+ #include <regex>
+ #include <sstream>
