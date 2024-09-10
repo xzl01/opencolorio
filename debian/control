@@ -43,7 +43,7 @@ Package: libopencolorio-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: libopencolorio2.1t64 (= ${binary:Version}),
+Depends: libopencolorio2.1 (= ${binary:Version}),
          ${misc:Depends}
 Description: complete color management solution - development
  OpenColorIO (OCIO) is a complete color management solution geared
@@ -70,10 +70,7 @@ Description: complete color management solution - development
  This package provides the development files used to build
  applications using OpenColorIO.
 
-Package: libopencolorio2.1t64
-Provides: ${t64:Provides}
-Replaces: libopencolorio2.1
-Breaks: libopencolorio2.1 (<< ${source:Version})
+Package: libopencolorio2.1
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
@@ -137,7 +134,7 @@ Package: python3-pyopencolorio
 Section: python
 Architecture: any
 Multi-Arch: same
-Depends: libopencolorio2.1t64 (= ${binary:Version}),
+Depends: libopencolorio2.1 (= ${binary:Version}),
          ${misc:Depends},
          ${python3:Depends},
          ${shlibs:Depends}
